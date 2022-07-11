@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Pet;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
@@ -20,7 +21,9 @@ class AdminController extends Controller
      */
     public function pets(){
 
-        return view('admin.pet');
+        $pets = Pet::get();
+
+        return view('admin.pet', compact('pets'));
     }
 
     /**
@@ -38,12 +41,14 @@ class AdminController extends Controller
             'height' => 'required',
             'weight' => 'required',
             'breed' => 'required',
+            'price' => 'required',
 
         ]);
 
-        // TODO:: INSERT DATA TO DATABSAE
+        $formFields['image'] = $formFields['image']->store('profiles', 'public');
+        $formFields['reserve'] = 'Available';
 
-        dd($formFields);
+        Pet::create($formFields);
 
         return back();
     }

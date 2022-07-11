@@ -23,6 +23,7 @@ return new class extends Migration
             $table->string('gender')->nullable();
             $table->string('civil_status')->nullable();
             $table->string('nationality')->nullable();
+            $table->string('claimed_pet')->nullable();
             $table->timestamps();
         });
     }

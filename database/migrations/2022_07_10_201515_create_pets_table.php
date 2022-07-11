@@ -23,6 +23,7 @@ return new class extends Migration
             $table->string('height');
             $table->string('weight');
             $table->string('breed');
+            $table->string('price');
             $table->string('reserve');
             $table->timestamps();
         });

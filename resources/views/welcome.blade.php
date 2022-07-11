@@ -46,7 +46,8 @@
                                             <div class="row">
                                                 <div>
                                                     <button type="submit"
-                                                        class="btn btn-primary form-control form-control-lg mt-3">
+                                                        class="btn text-light form-control form-control-lg mt-3"
+                                                        style="background-color: #4381c1">
                                                         Sign in
                                                     </button>
                                                 </div>

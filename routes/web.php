@@ -34,6 +34,9 @@ Route::get('/signout', [UserController::class, 'signout']);
  * CustomerController
  */
 Route::get('/home', [CustomerController::class, 'home']);
+// View Details of Pet
+Route::get('/pets/{pet}', [CustomerController::class, 'petDetails']);
+
 
 /**
  * Admin Controller
@@ -44,3 +47,5 @@ Route::get('/dashboard', [AdminController::class, 'dashboard']);
 Route::get('/pets', [AdminController::class, 'pets']);
 // Store Pet
 Route::post('/pets/store', [AdminController::class, 'petStore']);
+
+

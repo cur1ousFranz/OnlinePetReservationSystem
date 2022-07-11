@@ -19,6 +19,8 @@ class Pet extends Model
         'height',
         'weight',
         'breed',
+        'price',
+        'reserve'
 
     ];
 }

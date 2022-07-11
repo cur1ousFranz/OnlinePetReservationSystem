@@ -18,7 +18,23 @@
         integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous">
     </script>
 
+    {{-- FONT AWESOME CDN --}}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+
 </head>
+
+<style>
+
+        /* This is for Pets Table */
+        .pet {
+
+            overflow-x: auto;
+            max-width: auto;
+            white-space: nowrap;
+
+        }
+
+</style>
 
 <body class="d-flex flex-column min-vh-100">
     <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #3F403F">
@@ -50,24 +66,35 @@
                             </li>
                         @elseif(auth()->user()->role == 'admin')
                             <li class="nav-item">
-                                <a href="/dashboard" class="nav-link">
-                                    Dashboard
+                                <a href="/dashboard" class="nav-link" data-bs-toggle="tooltip" title="Dashboard">
+                                    <i class="bi bi-graph-up-arrow"></i>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="/pets" class="nav-link">
-                                    Pet
+                                <a href="/pets" class="nav-link" ata-bs-toggle="tooltip" title="Pets">
+                                    <i class="fa-solid fa-paw"></i>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="/signout" class="nav-link">
-                                    Signout
+                                <a href="#" class="nav-link dropdown show" data-bs-toggle="dropdown">
+                                    <i class="fa-solid fa-bell"></i>
+
+                                    <div class="dropdown-menu text-center p-0">
+                                        <ul class="list-group ">
+                                            <li class="list-group-item">No notification yet.</li>
+                                        </ul>
+                                    </div>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="/signout" class="nav-link" ata-bs-toggle="tooltip" title="Signout">
+                                    <i class="fa-solid fa-arrow-right-from-bracket"></i>
                                 </a>
                             </li>
                         @endif
                     @else
                         <li class="nav-item">
-                            <a href="" class="nav-link">
+                            <a href="/" class="nav-link">
                                 Home
                             </a>
                         </li>

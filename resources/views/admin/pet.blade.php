@@ -12,9 +12,9 @@
                     <a href="#" class="badge bg-secondary btn text-light text-decoration-none">New</a>
                 </div>
                 <div class="ms-auto">
-                    <button class="btn btn-primary rounded rounded-pill" data-bs-toggle="modal"
-                        data-bs-target="#addPet">
-                        <i class="bi bi-plus-circle-fill me-2"></i>Post Pet
+                    <button class="btn rounded rounded-pill text-light" data-bs-toggle="modal"
+                        data-bs-target="#addPet" style="background-color: #4381c1">
+                        Post Pet<i class="bi bi-plus-circle-fill ms-2"></i>
                     </button>
 
                     <!-- Modal -->
@@ -50,10 +50,10 @@
                                                         <select class="shadow-sm form-select form-control"
                                                             name="type">
                                                             <option selected disabled>Select</option>
-                                                            <option value="Dog">Dog</option>
-                                                            <option value="Bird">Bird</option>
-                                                            <option value="Fish">Fish</option>
-                                                            <option value="Cat">Cat</option>
+                                                            <option {{ old('type') ? 'selected' : ''}} value="Dog">Dog</option>
+                                                            <option {{ old('type') ? 'selected' : ''}} value="Bird">Bird</option>
+                                                            <option {{ old('type') ? 'selected' : ''}} value="Fish">Fish</option>
+                                                            <option {{ old('type') ? 'selected' : ''}} value="Cat">Cat</option>
 
                                                         </select>
 
@@ -67,8 +67,8 @@
                                                         <select class="shadow-sm form-select form-control"
                                                             name="gender">
                                                             <option selected disabled>Select</option>
-                                                            <option value="Male">Male</option>
-                                                            <option value="Female">Female</option>
+                                                            <option {{ old('gender') ? 'selected' : ''}} value="Male">Male</option>
+                                                            <option {{ old('gender') ? 'selected' : ''}} value="Female">Female</option>
 
                                                         </select>
 
@@ -80,7 +80,7 @@
                                                     <div class="mt-1">
                                                         <label for="age">Age</label>
                                                         <input type="text" class="shadow-sm form-control"
-                                                            name="age">
+                                                            name="age" value="{{ old('age') }}" maxlength="10">
 
                                                         @error('age')
                                                             <p class="text-danger">{{ $message }}</p>
@@ -94,39 +94,58 @@
                                                     <div>
                                                         <label for="color">Color</label>
                                                         <input type="text" class="shadow-sm form-control"
-                                                            name="color">
+                                                            name="color" value="{{ old('color') }}" max="30">
 
                                                         @error('color')
                                                             <p class="text-danger">{{ $message }}</p>
                                                         @enderror
                                                     </div>
 
-                                                    <div class="mt-1">
-                                                        <label for="height">Height</label>
-                                                        <input type="text" class="shadow-sm form-control"
-                                                            name="height">
+                                                    <div class="row mt-1">
 
-                                                        @error('height')
-                                                            <p class="text-danger">{{ $message }}</p>
-                                                        @enderror
-                                                    </div>
+                                                        <div class="col">
+                                                            <div>
+                                                                <label for="height">Height</label>
+                                                                <input type="text" class="shadow-sm form-control"
+                                                                    name="height" value="{{ old('height') }}" maxlength="10">
 
-                                                    <div class="mt-1">
-                                                        <label for="weight">Weight</label>
-                                                        <input type="text" class="shadow-sm form-control"
-                                                            name="weight">
+                                                                @error('height')
+                                                                    <p class="text-danger">{{ $message }}</p>
+                                                                @enderror
+                                                            </div>
+                                                        </div>
 
-                                                        @error('weight')
-                                                            <p class="text-danger">{{ $message }}</p>
-                                                        @enderror
+                                                        <div class="col">
+                                                            <div>
+                                                                <label for="weight">Weight</label>
+                                                                <input type="text" class="shadow-sm form-control"
+                                                                    name="weight" value="{{ old('weight') }}" maxlength="10">
+
+                                                                @error('weight')
+                                                                    <p class="text-danger">{{ $message }}</p>
+                                                                @enderror
+                                                            </div>
+                                                        </div>
+
                                                     </div>
 
                                                     <div class="mt-1">
                                                         <label for="breed">Breed</label>
                                                         <input type="text" class="shadow-sm form-control"
-                                                            name="breed">
+                                                            name="breed" value="{{ old('breed') }}" max="30">
 
                                                         @error('breed')
+                                                            <p class="text-danger">{{ $message }}</p>
+                                                        @enderror
+                                                    </div>
+
+                                                    <div class="mt-1">
+                                                        <label for="price">Price</label>
+                                                        <input type="text" class="shadow-sm form-control"
+                                                            name="price" placeholder="Pesos" onkeypress="return /[0-9]/i.test(event.key)"
+                                                            maxlength="6" value="{{ old('price') }}">
+
+                                                        @error('price')
                                                             <p class="text-danger">{{ $message }}</p>
                                                         @enderror
                                                     </div>
@@ -135,7 +154,8 @@
                                             </div>
                                         </div>
                                         <div class="modal-footer">
-                                            <button type="submit" class="btn btn-primary form-control">
+                                            <button type="submit" class="btn form-control text-light"
+                                            style="background-color: #4381c1">
                                                 Post
                                             </button>
                                         </div>
@@ -147,26 +167,46 @@
                     </div>
                 </div>
             </div>
-
-            <table class="table table-bordered text-center">
-                <thead>
-                    <tr>
-                        <th class="fw-normal">Image</th>
-                        <th class="fw-normal">Type</th>
-                        <th class="fw-normal">Gender</th>
-                        <th class="fw-normal">Age</th>
-                        <th class="fw-normal">Behaviour</th>
-                        <th class="fw-normal">Color</th>
-                        <th class="fw-normal">Height</th>
-                        <th class="fw-normal">Weight</th>
-                        <th class="fw-normal">Breed</th>
-                        <th class="fw-normal">Parents Breed</th>
-                    </tr>
-                </thead>
-                <tbody>
-
-                </tbody>
-            </table>
+            <div class="pet">
+                <table class="table text-center">
+                    <thead id="applicantListHeader">
+                        <tr>
+                            <th class="fw-normal">Image</th>
+                            <th class="fw-normal">Type</th>
+                            <th class="fw-normal">Gender</th>
+                            <th class="fw-normal">Age</th>
+                            <th class="fw-normal">Color</th>
+                            <th class="fw-normal">Height</th>
+                            <th class="fw-normal">Weight</th>
+                            <th class="fw-normal">Breed</th>
+                            <th class="fw-normal">Price</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @forelse ($pets as $pet)
+                            <tr>
+                                <td><img class="rounded" src="{{ asset('/storage/' . $pet->image) }}" alt="" width="50px" height="40px"></td>
+                                <td>{{ $pet->type }}</td>
+                                <td>{{ $pet->gender }}</td>
+                                <td>{{ $pet->age }}</td>
+                                <td>{{ $pet->color }}</td>
+                                <td>{{ $pet->height }}</td>
+                                <td>{{ $pet->weight }}</td>
+                                <td>{{ $pet->breed }}</td>
+                                <td>{{ $pet->price }}</td>
+                                <td>
+                                    <button class="btn btn-sm" style="background-color: #b9e28c"><i class="fa-solid fa-pen-to-square"></i></button>
+                                    <button class="btn btn-sm" style="background-color: #ff5154"><i class="bi bi-trash-fill"></i></button>
+                                </td>
+                            </tr>
+                        @empty
+                            <tr>
+                               <td>No pets displayed.</td>
+                            </tr>
+                        @endforelse
+                    </tbody>
+                </table>
+            </div>
 
         </x-layout>
     </section>
