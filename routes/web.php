@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Pet;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PetController;
 use App\Http\Controllers\UserController;
@@ -47,5 +48,17 @@ Route::get('/dashboard', [AdminController::class, 'dashboard']);
 Route::get('/pets', [AdminController::class, 'pets']);
 // Store Pet
 Route::post('/pets/store', [AdminController::class, 'petStore']);
+// Pet Edit Details Page
+Route::get('/pets/{pet}/edit', function(Pet $pet){
+    return view('admin.pet_edit', compact('pet'));
+});
+// Pet Edit Store
+Route::put('/pets/{pet}', [AdminController::class, 'petUpdate']);
+// // Pet Delete
+Route::get('/pets/{pet}/destroy', function(Pet $pet){
+
+    $pet->delete();
+    return back();
+});
 
 

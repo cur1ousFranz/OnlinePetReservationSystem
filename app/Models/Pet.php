@@ -23,4 +23,17 @@ class Pet extends Model
         'reserve'
 
     ];
+
+    /**
+     * This is for pet filtering
+     */
+    public function scopeFilter($query, array $filters){
+
+        if($filters['filter'] ?? false){
+            $query->where('type', 'like', '%' . request('filter') .'%')
+            ->orWhere('reserve', 'like', '%' . request('filter') .'%')
+            ->orWhere('type', 'like', '%' . request('filter') .'%');
+
+        }
+    }
 }

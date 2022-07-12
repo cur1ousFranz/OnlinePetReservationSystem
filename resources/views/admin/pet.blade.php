@@ -2,18 +2,19 @@
     <section>
         <x-layout>
             <div class="container-fluid mb-2 d-flex">
-                <div class="h5">Types</div>
+                <div class="h4">Pets</div>
                 <div class="ms-3">
-                    <a href="#" class="badge bg-secondary btn text-light text-decoration-none">New</a>
-                    <a href="#" class="badge bg-secondary btn text-light text-decoration-none">New</a>
-                    <a href="#" class="badge bg-secondary btn text-light text-decoration-none">New</a>
-                    <a href="#" class="badge bg-secondary btn text-light text-decoration-none">New</a>
-                    <a href="#" class="badge bg-secondary btn text-light text-decoration-none">New</a>
-                    <a href="#" class="badge bg-secondary btn text-light text-decoration-none">New</a>
+                    <a href="/pets" class="text-decoration-none me-1">All <span class="text-dark">|</span></a>
+                    <a href="?filter=available" class="text-decoration-none me-1">Available <span class="text-dark">|</span></a>
+                    <a href="?filter=reserved" class="text-decoration-none me-1">Reserved <span class="text-dark">|</span></a>
+                    <a href="?filter=dog" class="text-decoration-none me-1">Dog <span class="text-dark">|</span></a>
+                    <a href="?filter=bird" class="text-decoration-none me-1">Bird <span class="text-dark">|</span></a>
+                    <a href="?filter=fish" class="text-decoration-none me-1">Fish <span class="text-dark">|</span></a>
+                    <a href="?filter=cat" class="text-decoration-none me-1">Cat <span class="text-dark">|</span></a>
                 </div>
                 <div class="ms-auto">
-                    <button class="btn rounded rounded-pill text-light" data-bs-toggle="modal"
-                        data-bs-target="#addPet" style="background-color: #4381c1">
+                    <button class="btn rounded rounded-pill text-light" data-bs-toggle="modal" data-bs-target="#addPet"
+                        style="background-color: #4381c1">
                         Post Pet<i class="bi bi-plus-circle-fill ms-2"></i>
                     </button>
 
@@ -50,10 +51,14 @@
                                                         <select class="shadow-sm form-select form-control"
                                                             name="type">
                                                             <option selected disabled>Select</option>
-                                                            <option {{ old('type') ? 'selected' : ''}} value="Dog">Dog</option>
-                                                            <option {{ old('type') ? 'selected' : ''}} value="Bird">Bird</option>
-                                                            <option {{ old('type') ? 'selected' : ''}} value="Fish">Fish</option>
-                                                            <option {{ old('type') ? 'selected' : ''}} value="Cat">Cat</option>
+                                                            <option {{ old('type') === 'Dog' ? 'selected' : '' }}
+                                                                value="Dog">Dog</option>
+                                                            <option {{ old('type') === 'Bird' ? 'selected' : '' }}
+                                                                value="Bird">Bird</option>
+                                                            <option {{ old('type') === 'Fish' ? 'selected' : '' }}
+                                                                value="Fish">Fish</option>
+                                                            <option {{ old('type') === 'Cat' ? 'selected' : '' }}
+                                                                value="Cat">Cat</option>
 
                                                         </select>
 
@@ -67,8 +72,10 @@
                                                         <select class="shadow-sm form-select form-control"
                                                             name="gender">
                                                             <option selected disabled>Select</option>
-                                                            <option {{ old('gender') ? 'selected' : ''}} value="Male">Male</option>
-                                                            <option {{ old('gender') ? 'selected' : ''}} value="Female">Female</option>
+                                                            <option {{ old('gender') === 'Male' ? 'selected' : '' }}
+                                                                value="Male">Male</option>
+                                                            <option {{ old('gender') === 'Female' ? 'selected' : '' }}
+                                                                value="Female">Female</option>
 
                                                         </select>
 
@@ -107,7 +114,8 @@
                                                             <div>
                                                                 <label for="height">Height</label>
                                                                 <input type="text" class="shadow-sm form-control"
-                                                                    name="height" value="{{ old('height') }}" maxlength="10">
+                                                                    name="height" value="{{ old('height') }}"
+                                                                    maxlength="10">
 
                                                                 @error('height')
                                                                     <p class="text-danger">{{ $message }}</p>
@@ -119,7 +127,8 @@
                                                             <div>
                                                                 <label for="weight">Weight</label>
                                                                 <input type="text" class="shadow-sm form-control"
-                                                                    name="weight" value="{{ old('weight') }}" maxlength="10">
+                                                                    name="weight" value="{{ old('weight') }}"
+                                                                    maxlength="10">
 
                                                                 @error('weight')
                                                                     <p class="text-danger">{{ $message }}</p>
@@ -142,7 +151,8 @@
                                                     <div class="mt-1">
                                                         <label for="price">Price</label>
                                                         <input type="text" class="shadow-sm form-control"
-                                                            name="price" placeholder="Pesos" onkeypress="return /[0-9]/i.test(event.key)"
+                                                            name="price" placeholder="Pesos"
+                                                            onkeypress="return /[0-9]/i.test(event.key)"
                                                             maxlength="6" value="{{ old('price') }}">
 
                                                         @error('price')
@@ -155,7 +165,7 @@
                                         </div>
                                         <div class="modal-footer">
                                             <button type="submit" class="btn form-control text-light"
-                                            style="background-color: #4381c1">
+                                                style="background-color: #4381c1">
                                                 Post
                                             </button>
                                         </div>
@@ -180,33 +190,77 @@
                             <th class="fw-normal">Weight</th>
                             <th class="fw-normal">Breed</th>
                             <th class="fw-normal">Price</th>
+                            <th class="fw-normal">Status</th>
                         </tr>
                     </thead>
                     <tbody>
                         @forelse ($pets as $pet)
                             <tr>
-                                <td><img class="rounded" src="{{ asset('/storage/' . $pet->image) }}" alt="" width="50px" height="40px"></td>
+                                <td><img class="rounded" src="{{ asset('/storage/' . $pet->image) }}"
+                                        alt="Image of {{ $pet->type }}" width="50px" height="40px"></td>
                                 <td>{{ $pet->type }}</td>
                                 <td>{{ $pet->gender }}</td>
-                                <td>{{ $pet->age }}</td>
+                                <td>{{ $pet->age }} </td>
                                 <td>{{ $pet->color }}</td>
                                 <td>{{ $pet->height }}</td>
                                 <td>{{ $pet->weight }}</td>
                                 <td>{{ $pet->breed }}</td>
                                 <td>{{ $pet->price }}</td>
-                                <td>
-                                    <button class="btn btn-sm" style="background-color: #b9e28c"><i class="fa-solid fa-pen-to-square"></i></button>
-                                    <button class="btn btn-sm" style="background-color: #ff5154"><i class="bi bi-trash-fill"></i></button>
+                                <td style="color: #329f5b">{{ $pet->reserve }}</td>
+                                <td class="d-flex">
+                                    <a href="/pets/{{ $pet->id }}/edit" class="btn btn-sm me-1"
+                                        style="background-color: #b9e28c">
+                                        <i class="fa-solid fa-pen-to-square"></i>
+                                    </a>
+
+                                    <a href="/pets/{{ $pet->id }}/destroy" class="btn btn-sm"
+                                        style="background-color: #ff5154"">
+                                        <i class="bi bi-trash-fill"></i>
+                                    </a>
+
                                 </td>
                             </tr>
+
                         @empty
                             <tr>
-                               <td>No pets displayed.</td>
+                                <td colspan="10">No pets displayed.</td>
                             </tr>
                         @endforelse
                     </tbody>
                 </table>
             </div>
+                {{-- PAGINATION --}}
+                <div class="container mt-3">
+                    {{ $pets->links('pagination::bootstrap-5') }}
+                </div>
+            </div>
+
+            {{-- Delete Pet Confirmation Modal --}}
+            {{-- <form action="" method="post">
+                @csrf
+                @method('DELETE')
+            <div class="modal fade" id="petDeleteModal{{ $pet->id }}">
+                <div class="modal-dialog modal-dialog-centered text-center">
+                    <div class="modal-content border border-danger" role="document">
+                        <div class="modal-header d-flex justify-content-center">
+                            <h4 class="modal-title">Delete Pet</h4>
+                        </div>
+
+                            <div class="modal-body">
+                                <h5>Are you sure you want to delete this Pet? {{ $pet->id }}</h5>
+                            </div>
+                            <div class="modal-footer d-flex justify-content-center">
+                            <button type="button" class="btn btn-outline-danger"
+                                data-bs-dismiss="modal">
+                                Cancel
+                            </button>
+                            <button type="submit" class="btn btn-outline-primary">
+                                Confirm
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </form> --}}
 
         </x-layout>
     </section>

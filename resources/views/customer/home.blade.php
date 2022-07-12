@@ -45,10 +45,11 @@
 
         <div class="card border-end-0 border-start-0 border-bottom-0">
             <div class="card-body">
+                {{-- Array chunk was used to filter how many card in a row, much like pagination --}}
                 @forelse (array_chunk($pet->toArray(), 4) as $set)
                     <div class="row d-flex justify-content-around">
                         @foreach ($set as $pet)
-                            <div class="col-3 card shadow rounded rounded-2 mt-3" style="width: 15rem; height: 19rem">
+                            <div class="col-3 card shadow rounded rounded-3 mt-4" style="width: 15rem; height: 19rem">
                                 <img class="card-img-top w-100 mt-2 border" src="{{ asset('/storage/' . $pet->image) }}"
                                 alt="Image of {{ $pet->type }}" style="min-height: 150px;">
                                 <div class="card-body p-0 mt-1">
