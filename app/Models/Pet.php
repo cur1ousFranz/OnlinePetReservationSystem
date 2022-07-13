@@ -32,7 +32,12 @@ class Pet extends Model
         if($filters['filter'] ?? false){
             $query->where('type', 'like', '%' . request('filter') .'%')
             ->orWhere('reserve', 'like', '%' . request('filter') .'%')
-            ->orWhere('type', 'like', '%' . request('filter') .'%');
+            ->orWhere('type', 'like', '%' . request('filter') .'%')
+            ->orWhere('gender', 'like', '%' . request('filter') .'%')
+            ->orWhere('age', 'like', '%' . request('filter') .'%')
+            ->orWhere('color', 'like', '%' . request('filter') .'%')
+            ->orWhere('breed', 'like', '%' . request('filter') .'%')
+            ->orWhere('price', 'like', '%' . request('filter') .'%');
 
         }
     }

@@ -11,7 +11,7 @@ class CustomerController extends Controller
 
     public function home(){
 
-        $pet = DB::table('pets')->get();
+        $pet = Pet::filter(request(['filter']))->get();
 
         return view('customer.home', compact('pet'));
     }
@@ -19,8 +19,8 @@ class CustomerController extends Controller
     public function petDetails(Pet $pet){
 
         // TODO:: Pet Details
+        $pet = Pet::where('id',$pet->id)->first();
 
-
-        return view('customer.pet_details');
+        return view('customer.pet_details', compact('pet'));
     }
 }

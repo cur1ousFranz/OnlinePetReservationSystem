@@ -39,7 +39,7 @@
 <body class="d-flex flex-column min-vh-100">
     <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #3F403F">
         <div class="container py-2 py-md-0">
-            <a href="" class="navbar-brand">Title</a>
+            <a href="/" class="navbar-brand">Title</a>
 
             <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navmenu">
                 <i class="bi bi-list"></i>
@@ -50,18 +50,18 @@
                     @auth
                         @if (auth()->user()->role == 'customer')
                             <li class="nav-item">
-                                <a href="#" class="nav-link">
-                                    Home
+                                <a href="/home" class="nav-link" data-bs-toggle="tooltip" title="Home">
+                                    <i class="fa-solid fa-house"></i>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="" class="nav-link">
-                                    About
+                                <a href="#" class="nav-link" data-bs-toggle="tooltip" title="Reservations">
+                                    <i class="fa-solid fa-cart-arrow-down"></i>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="/signout" class="nav-link">
-                                    Signout
+                                <a href="/signout" class="nav-link" data-bs-toggle="tooltip" title="Signout">
+                                    <i class="fa-solid fa-arrow-right-from-bracket"></i>
                                 </a>
                             </li>
                         @elseif(auth()->user()->role == 'admin')

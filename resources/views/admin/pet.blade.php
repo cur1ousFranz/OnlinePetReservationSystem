@@ -3,7 +3,7 @@
         <x-layout>
             <div class="container-fluid mb-2 d-flex">
                 <div class="h4">Pets</div>
-                <div class="ms-3">
+                <div class="ms-3 mt-1">
                     <a href="/pets" class="text-decoration-none me-1">All <span class="text-dark">|</span></a>
                     <a href="?filter=available" class="text-decoration-none me-1">Available <span class="text-dark">|</span></a>
                     <a href="?filter=reserved" class="text-decoration-none me-1">Reserved <span class="text-dark">|</span></a>

@@ -20,45 +20,55 @@ use App\Http\Controllers\CustomerController;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->middleware('guest');
 
 // Signup Form
-Route::get('/signup', [UserController::class, 'signup']);
+Route::get('/signup', [UserController::class, 'signup'])->middleware('guest');
 // Signup Input Store
-Route::post('/signup/store', [UserController::class, 'signupStore']);
+Route::post('/signup/store', [UserController::class, 'signupStore'])->middleware('guest');
 // Sigin User
-Route::post('/signin', [UserController::class, 'signin']);
-// Signout User
-Route::get('/signout', [UserController::class, 'signout']);
-
-/**
- * CustomerController
- */
-Route::get('/home', [CustomerController::class, 'home']);
-// View Details of Pet
-Route::get('/pets/{pet}', [CustomerController::class, 'petDetails']);
+Route::post('/signin', [UserController::class, 'signin'])->name('login')->middleware('guest');
 
 
-/**
- * Admin Controller
- */
-// Dashboard Page
-Route::get('/dashboard', [AdminController::class, 'dashboard']);
-// Pets Page
-Route::get('/pets', [AdminController::class, 'pets']);
-// Store Pet
-Route::post('/pets/store', [AdminController::class, 'petStore']);
-// Pet Edit Details Page
-Route::get('/pets/{pet}/edit', function(Pet $pet){
-    return view('admin.pet_edit', compact('pet'));
-});
-// Pet Edit Store
-Route::put('/pets/{pet}', [AdminController::class, 'petUpdate']);
-// // Pet Delete
-Route::get('/pets/{pet}/destroy', function(Pet $pet){
+Route::group(['middleware' => 'auth'], function(){
 
-    $pet->delete();
-    return back();
+    // Signout User
+    Route::get('/signout', [UserController::class, 'signout']);
+
+    // CUSTOMER MIDDLEWARE - CONTROLLER
+    Route::group(['middleware' => 'customer'], function(){
+
+        // Home Page
+        Route::get('/home', [CustomerController::class, 'home']);
+        // View Details of Pet
+        Route::get('/pets/{pet}', [CustomerController::class, 'petDetails']);
+
+    });
+
+    // ADMIN MIDDLEWARE - CONTROLLER
+    Route::group(['middleware' => 'admin'], function(){
+
+        // Dashboard Page
+        Route::get('/dashboard', [AdminController::class, 'dashboard']);
+        // Pets Page
+        Route::get('/pets', [AdminController::class, 'pets']);
+        // Store Pet
+        Route::post('/pets/store', [AdminController::class, 'petStore']);
+        // Pet Edit Details Page
+        Route::get('/pets/{pet}/edit', function(Pet $pet){
+            return view('admin.pet_edit', compact('pet'));
+        });
+        // Pet Edit Store
+        Route::put('/pets/{pet}', [AdminController::class, 'petUpdate']);
+        // // Pet Delete
+        Route::get('/pets/{pet}/destroy', function(Pet $pet){
+
+            $pet->delete();
+            return back();
+        });
+
+    });
+
 });
 
 
