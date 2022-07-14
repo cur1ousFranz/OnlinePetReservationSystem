@@ -1,6 +1,8 @@
 <?php
 
 use App\Models\Pet;
+use App\Models\Customer;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PetController;
 use App\Http\Controllers\UserController;
@@ -40,8 +42,22 @@ Route::group(['middleware' => 'auth'], function(){
 
         // Home Page
         Route::get('/home', [CustomerController::class, 'home']);
+        // Customer Profile
+        Route::get('/profile', function (){
+
+            return view('customer.profile', [
+                'customer' => Customer::with('contact')->where('users_id', Auth::user()->id)->first()
+            ]);
+        });
+
+        // Customer Profile Edit
+        Route::get('/profiles/{customer}/edit', function(Customer $customer){
+
+            return view('customer.profiles_edit', compact('customer'));
+        });
         // View Details of Pet
         Route::get('/pets/{pet}', [CustomerController::class, 'petDetails']);
+
 
     });
 

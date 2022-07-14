@@ -19,4 +19,9 @@ class Customer extends Model
         'civil_status',
         'nationality',
     ];
+
+    public function contact(){
+
+        return $this->hasOne(Contact::class, 'customers_id');
+    }
 }

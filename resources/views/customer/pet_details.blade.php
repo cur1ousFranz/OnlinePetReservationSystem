@@ -6,8 +6,7 @@
                     <span class="badge bg-success">New</span>
                     <div class="d-flex justify-content-center">
                         <img class="img-fluid rounded rounded-3 border shadow w-50 h-auto"
-                        src="{{ asset('/storage/' . $pet->image) }}"
-                        alt="">
+                            src="{{ asset('/storage/' . $pet->image) }}" alt="">
                     </div>
                     <div class="container">
                         <hr>
@@ -62,45 +61,42 @@
                         <hr>
                     </div>
                     <div class="d-flex justify-content-center justify-content-lg-end ">
-                        <button class="btn text-light" style="background-color: #4381c1"
-                        data-bs-toggle="modal" data-bs-target="#reservationModal">
+                        <button class="btn text-light" style="background-color: #4381c1" data-bs-toggle="modal"
+                            data-bs-target="#reservationModal">
                             <i class="fa-solid fa-cart-arrow-down me-1"></i>
                             Place Reservation
                         </button>
 
                         {{-- Reservation Modal --}}
                         <div class="modal fade" id="reservationModal">
-                            <div class="modal-dialog modal-dialog-centered text-center" >
-                            <div class="modal-content border border-success">
-                                <div class="modal-header d-flex justify-content-center">
-                                    <div class="h4 ">Reservation</div>
-                                </div>
-                                <div class="modal-body">
-                                    <p>By placing the reservation, you only have 24hours to claim
-                                        the pet from the Shop. If you haven't claim the pet within
-                                        24hours, the reservation will automatically cancelled and Pet
-                                        will be available again to other customer.
-                                    </p>
+                            <div class="modal-dialog modal-dialog-centered text-center">
+                                <div class="modal-content border border-success">
+                                    <div class="modal-header d-flex justify-content-center">
+                                        <div class="h4 ">Reservation</div>
+                                    </div>
+                                    <div class="modal-body">
+                                        <p>By placing the reservation, you only have 24hours to claim
+                                            the pet from the Shop. If you haven't claim the pet within
+                                            24hours, the reservation will automatically cancelled and Pet
+                                            will be available again to other customer.
+                                        </p>
 
+                                    </div>
+                                    <div class="modal-footer d-flex justify-content-center">
+                                        <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">
+                                            Cancel
+                                        </button>
+                                        {{-- TODO:: --}}
+                                        <button type="submit" class="btn btn-outline-primary">
+                                            Proceed
+                                        </button>
+                                    </div>
                                 </div>
-                                <div class="modal-footer d-flex justify-content-center">
-                                    <button type="button" class="btn btn-outline-danger"
-                                    data-bs-dismiss="modal">
-                                        Cancel
-                                    </button>
-                                    {{-- TODO:: --}}
-                                    <button type="submit" class="btn btn-outline-primary">
-                                        Proceed
-                                    </button>
-                                </div>
-                            </div>
                             </div>
                         </div>
                     </div>
-
-
                 </div>
-              </div>
+            </div>
         </x-layout>
     </section>
 </x-navbar>

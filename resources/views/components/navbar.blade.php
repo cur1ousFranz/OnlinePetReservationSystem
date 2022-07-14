@@ -50,19 +50,45 @@
                     @auth
                         @if (auth()->user()->role == 'customer')
                             <li class="nav-item">
-                                <a href="/home" class="nav-link" data-bs-toggle="tooltip" title="Home">
+                                <a href="/home" class="nav-link text-light" data-bs-toggle="tooltip" title="Home">
                                     <i class="fa-solid fa-house"></i>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="#" class="nav-link" data-bs-toggle="tooltip" title="Reservations">
+                                <a href="#" class="nav-link text-light" data-bs-toggle="tooltip" title="Reservations">
                                     <i class="fa-solid fa-cart-arrow-down"></i>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="/signout" class="nav-link" data-bs-toggle="tooltip" title="Signout">
+
+                                <div class="dropdown show">
+
+                                    <a class="nav-link border-0" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown">
+                                        <?php
+                                            echo auth()->user()->username;
+                                        ?>
+                                        <i class="ms-1 bi bi-caret-down-fill"></i>
+                                    </a>
+
+                                    <div class="dropdown-menu text-center">
+                                        <a class="dropdown-item" href="/profile">Profile</a>
+                                        <div class="dropdown-divider"></div>
+                                        {{-- <form action="/logout" method="post" class="dropdown-item">
+                                            @csrf
+                                            <button class="btn mb-0 pb-0 pt-0 text-danger" type="submit">Logout</button>
+                                        </form> --}}
+
+                                        <a href="/signout" class="nav-link dropdown-item text-dark" data-bs-toggle="tooltip" title="Signout">
+                                            <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                                            Sign out
+                                        </a>
+                                    </div>
+
+                                </div>
+
+                                {{-- <a href="/signout" class="nav-link" data-bs-toggle="tooltip" title="Signout">
                                     <i class="fa-solid fa-arrow-right-from-bracket"></i>
-                                </a>
+                                </a> --}}
                             </li>
                         @elseif(auth()->user()->role == 'admin')
                             <li class="nav-item">
