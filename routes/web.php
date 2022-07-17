@@ -55,6 +55,11 @@ Route::group(['middleware' => 'auth'], function(){
 
             return view('customer.profiles_edit', compact('customer'));
         });
+
+         // Customer Profile Update
+         Route::patch('/profiles/{customer}/update', [CustomerController::class, 'profileUpdate']);
+
+
         // View Details of Pet
         Route::get('/pets/{pet}', [CustomerController::class, 'petDetails']);
 

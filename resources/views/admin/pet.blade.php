@@ -86,7 +86,7 @@
 
                                                     <div class="mt-1">
                                                         <label for="age">Age</label>
-                                                        <input type="text" class="shadow-sm form-control"
+                                                        <input type="number" class="shadow-sm form-control"
                                                             name="age" value="{{ old('age') }}" maxlength="10">
 
                                                         @error('age')
