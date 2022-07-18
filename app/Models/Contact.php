@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Customer;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Contact extends Model
 {
@@ -15,4 +16,9 @@ class Contact extends Model
         'contact_email',
 
     ];
+
+    public function customer(){
+
+        return $this->belongsTo(Customer::class, 'customers_id');
+    }
 }

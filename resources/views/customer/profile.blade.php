@@ -4,10 +4,32 @@
             <div class="card w-75 shadow-sm">
                 <div class="card-body border-top border-bottom border-bottom-4 border-top-4 border-primary">
                     <div class="row">
-                        <div class="col-md-4 mt-4 d-flex justify-content-center">
-                            <img src="{{ asset('/storage/customer/default-pic.png') }}" alt=""
-                                class="rounded rounded-circle border img-fluid w-50 h-100"
-                                style="max-height: 120px">
+                        <div class="col-md-4 mt-4">
+                            <div class="row">
+                                <div class="col d-flex justify-content-center">
+                                    <img src="{{ asset('/storage/customer/default-pic.png') }}" alt=""
+                                        class="rounded rounded-circle border img-fluid w-50 h-100"
+                                        style="max-height: 120px">
+                                </div>
+                            </div>
+                            <div class="row mt-4 ">
+                                <div class="col d-flex justify-content-center">
+                                    <i class="fa-solid fa-id-card mt-1 me-3"></i>
+                                    <p class="m-0 float-start">{{ $customer->id }}</p>
+                                </div>
+                                <div class="container">
+                                    <hr class="mt-1">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col d-flex justify-content-center">
+                                    <i class="fa-solid fa-user  mt-1 me-3"></i>
+                                    <p class="m-0 float-start">{{ auth()->user()    ->username }}</p>
+                                </div>
+                                <div class="container">
+                                    <hr class="mt-1">
+                                </div>
+                            </div>
                         </div>
 
                         <div class="col-md-8 mt-4 mb-4 border-start border-1">
@@ -113,7 +135,7 @@
                                             <label for="claimed">Total Claimed Pets
                                         </div></label>
                                         <input class="shadow-sm form-control form-control text-muted" type="text"
-                                            id="claimed" value="{{ $customer->claimed_pet }}" style="background-color: #fff;"
+                                            id="claimed" value="{{ $customer->claimed_pet == null ? 0 : $customer->claimed_pet}}" style="background-color: #fff;"
                                             disabled>
                                     </div>
 

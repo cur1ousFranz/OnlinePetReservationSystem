@@ -22,7 +22,7 @@
                                         <div class="col-md">
                                             <label for="first_name">First Name</label>
                                             <input class="shadow-sm form-control form-control text-muted" type="text"
-                                                id="first_name" value="">
+                                                id="first_name" value="" name="first_name">
                                         </div>
 
                                         <div class="col-md">
@@ -50,7 +50,7 @@
                                                 <label for="middle_name">Middle Name
                                             </div></label>
                                             <input class="shadow-sm form-control form-control text-muted" type="text"
-                                                id="middle_name" value="">
+                                                id="middle_name" value="" name="middle_name">
                                         </div>
 
                                         <div class="col-md">
@@ -166,7 +166,7 @@
                                                 <label for="last_name">Last Name
                                             </div></label>
                                             <input class="shadow-sm form-control form-control text-muted" type="text"
-                                                id="last_name" value="">
+                                                id="last_name" value="" name="last_name">
                                         </div>
 
                                         <div class="col-md">
@@ -174,7 +174,8 @@
                                                 <label for="contact_number">Contact Number
                                             </div></label>
                                             <input class="shadow-sm form-control form-control text-muted" type="tel"
-                                                id="contact_number" value="" onkeypress="return /[0-9]/i.test(event.key)" maxlength="11">
+                                                id="contact_number" value="" onkeypress="return /[0-9]/i.test(event.key)" maxlength="11"
+                                                name="contact_number">
                                         </div>
 
                                     </div>
@@ -234,7 +235,7 @@
                                     </div>
                                 </div>
                                 <div class="mt-3">
-                                    <button type="submit" class="btn float-end me-4" style="background-color: #4381c1">Update</button>
+                                    <button type="submit" class="btn float-end me-4 text-light" style="background-color: #4381c1">Update</button>
                                 </div>
                             </form>
                         </div>
