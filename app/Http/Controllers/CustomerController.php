@@ -5,8 +5,10 @@ namespace App\Http\Controllers;
 use App\Models\Pet;
 use App\Models\Contact;
 use App\Models\Customer;
+use App\Models\Reservation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class CustomerController extends Controller
 {
@@ -14,18 +16,9 @@ class CustomerController extends Controller
     // Customer home page with the list of pets
     public function home(){
 
-        $pet = Pet::filter(request(['filter']))->get();
+        $pet = Pet::where('reserve', 'Available')->filter(request(['filter']))->get();
 
         return view('customer.home', compact('pet'));
-    }
-
-    // Show the pet details
-    public function petDetails(Pet $pet){
-
-        // TODO:: Pet Details
-        $pet = Pet::where('id',$pet->id)->first();
-
-        return view('customer.pet_details', compact('pet'));
     }
 
     // Customer profile update
@@ -57,5 +50,14 @@ class CustomerController extends Controller
         ]);
 
         return redirect('/profile');
+    }
+
+    // Reservations Page
+    public function reservation(){
+
+        $customer = Customer::where('users_id', Auth::user()->id)->first();
+        return view('customer.reservation',[
+            'pet_reserve' => Reservation::where('customers_id', $customer->id)->get()
+        ]);
     }
 }

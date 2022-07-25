@@ -24,7 +24,7 @@
                             <div class="row">
                                 <div class="col d-flex justify-content-center">
                                     <i class="fa-solid fa-user  mt-1 me-3"></i>
-                                    <p class="m-0 float-start">{{ auth()->user()    ->username }}</p>
+                                    <p class="m-0 float-start">{{ auth()->user()->username }}</p>
                                 </div>
                                 <div class="container">
                                     <hr class="mt-1">
@@ -52,7 +52,7 @@
                                             <label for="civil_status">Civil Status
                                         </div></label>
                                         <input class="shadow-sm form-control form-control text-muted" type="text"
-                                            id="civil_status" value="{{ $customer->middle_name }}" style="background-color: #fff;"
+                                            id="civil_status" value="{{ $customer->civil_status }}" style="background-color: #fff;"
                                             disabled>
                                     </div>
                                 </div>

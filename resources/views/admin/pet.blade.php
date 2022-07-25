@@ -206,7 +206,9 @@
                                 <td>{{ $pet->weight }}</td>
                                 <td>{{ $pet->breed }}</td>
                                 <td>{{ $pet->price }}</td>
-                                <td style="color: #329f5b">{{ $pet->reserve }}</td>
+                                <td class="{{ $pet->reserve == "Available" ? 'text-success' : 'text-danger'}}">
+                                    {{ $pet->reserve }}
+                                </td>
                                 <td class="d-flex">
                                     <a href="/pets/{{ $pet->id }}/edit" class="btn btn-sm me-1"
                                         style="background-color: #b9e28c">

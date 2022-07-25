@@ -60,41 +60,68 @@
                     <div class="container">
                         <hr>
                     </div>
-                    <div class="d-flex justify-content-center justify-content-lg-end ">
-                        <button class="btn text-light" style="background-color: #4381c1" data-bs-toggle="modal"
-                            data-bs-target="#reservationModal">
-                            <i class="fa-solid fa-cart-arrow-down me-1"></i>
-                            Place Reservation
-                        </button>
+                    @if ($customer->first_name)
+                        @if ($pet->reserve === "Reserved")
+                        <div class="row">
+                            <div class="col-lg  d-flex justify-content-center">
+                                <p class="text-muted">Pet has already been reserved</p>
+                            </div>
+                            <div class="col-lg d-flex justify-content-center justify-content-lg-end">
+                                <button class="btn btn-outline-danger" disabled>
+                                    <i class="fa-solid fa-cart-arrow-down me-1"></i>
+                                    Place Reservation
+                                </button>
+                            </div>
+                        </div>
+                        @else
+                            <div class="d-flex justify-content-center justify-content-lg-end ">
+                                <button class="btn text-light" style="background-color: #4381c1" data-bs-toggle="modal"
+                                    data-bs-target="#reservationModal">
+                                    <i class="fa-solid fa-cart-arrow-down me-1"></i>
+                                    Place Reservation
+                                </button>
 
-                        {{-- Reservation Modal --}}
-                        <div class="modal fade" id="reservationModal">
-                            <div class="modal-dialog modal-dialog-centered text-center">
-                                <div class="modal-content border border-success">
-                                    <div class="modal-header d-flex justify-content-center">
-                                        <div class="h4 ">Reservation</div>
-                                    </div>
-                                    <div class="modal-body">
-                                        <p>By placing the reservation, you only have 24hours to claim
-                                            the pet from the Shop. If you haven't claim the pet within
-                                            24hours, the reservation will automatically cancelled and Pet
-                                            will be available again to other customer.
-                                        </p>
+                                {{-- Reservation Modal --}}
+                                <div class="modal fade" id="reservationModal">
+                                    <div class="modal-dialog modal-dialog-centered text-center">
+                                        <div class="modal-content border border-success">
+                                            <div class="modal-header d-flex justify-content-center">
+                                                <div class="h4 ">Reservation</div>
+                                            </div>
+                                            <div class="modal-body">
+                                                <p>By placing the reservation, you only have 24hours to claim
+                                                    the pet from the Shop. If you haven't claim the pet within
+                                                    24hours, the reservation will automatically cancelled and Pet
+                                                    will be available again to other customer.
+                                                </p>
 
-                                    </div>
-                                    <div class="modal-footer d-flex justify-content-center">
-                                        <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">
-                                            Cancel
-                                        </button>
-                                        {{-- TODO:: --}}
-                                        <button type="submit" class="btn btn-outline-primary">
-                                            Proceed
-                                        </button>
+                                            </div>
+                                            <div class="modal-footer d-flex justify-content-center">
+                                                <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">
+                                                    Cancel
+                                                </button>
+                                                <a href="/pets/{{ $pet->id }}/reservation" class="btn btn-outline-primary">
+                                                    Proceed
+                                                </a>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
+                        @endif
+                    @else
+                        <div class="row">
+                            <div class="col-lg  d-flex justify-content-center">
+                                <p class="text-muted">Complete profile to <a href="/profile" target="_blank">proceed.</a></p>
+                            </div>
+                            <div class="col-lg d-flex justify-content-center justify-content-lg-end">
+                                <button class="btn btn-outline-danger" disabled>
+                                    <i class="fa-solid fa-cart-arrow-down me-1"></i>
+                                    Place Reservation
+                                </button>
+                            </div>
                         </div>
-                    </div>
+                    @endif
                 </div>
             </div>
         </x-layout>

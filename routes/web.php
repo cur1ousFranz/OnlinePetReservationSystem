@@ -59,9 +59,14 @@ Route::group(['middleware' => 'auth'], function(){
          // Customer Profile Update
          Route::patch('/profiles/{customer}/update', [CustomerController::class, 'profileUpdate']);
 
-
         // View Details of Pet
-        Route::get('/pets/{pet}', [CustomerController::class, 'petDetails']);
+        Route::get('/pets/{pet}', [PetController::class, 'petDetails']);
+
+        // Pet Reservation
+        Route::get('/pets/{pet}/reservation', [PetController::class, 'petReservation']);
+
+        // Customer Reservations
+        Route::get('/reservation', [CustomerController::class, 'reservation']);
 
 
     });

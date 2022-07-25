@@ -55,8 +55,15 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="#" class="nav-link text-light" data-bs-toggle="tooltip" title="Reservations">
+                                <a href="/reservation" class="nav-link text-light" data-bs-toggle="tooltip" title="Reservations">
                                     <i class="fa-solid fa-cart-arrow-down"></i>
+                                    <span class="badge bg-danger">
+                                        @php
+                                            $customer = App\Models\Customer::where('users_id', auth()->user()->id)->first();
+                                            $customer_reserved = \App\Models\Reservation::where('customers_id', $customer->id)->get();
+                                        @endphp
+                                        {{ $customer_reserved->count() }}
+                                    </span>
                                 </a>
                             </li>
                             <li class="nav-item">
