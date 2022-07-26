@@ -57,13 +57,15 @@
                             <li class="nav-item">
                                 <a href="/reservation" class="nav-link text-light" data-bs-toggle="tooltip" title="Reservations">
                                     <i class="fa-solid fa-cart-arrow-down"></i>
-                                    <span class="badge bg-danger">
-                                        @php
-                                            $customer = App\Models\Customer::where('users_id', auth()->user()->id)->first();
-                                            $customer_reserved = \App\Models\Reservation::where('customers_id', $customer->id)->get();
-                                        @endphp
-                                        {{ $customer_reserved->count() }}
-                                    </span>
+                                    @php
+                                        $customer = App\Models\Customer::where('users_id', auth()->user()->id)->first();
+                                        $customer_reserved = \App\Models\Reservation::where('customers_id', $customer->id)->get();
+                                    @endphp
+                                    @if ($customer_reserved->count() > 0)
+                                        <span class="badge bg-danger">
+                                            {{ $customer_reserved->count() }}
+                                        </span>
+                                    @endif
                                 </a>
                             </li>
                             <li class="nav-item">
@@ -106,6 +108,16 @@
                             <li class="nav-item">
                                 <a href="/pets" class="nav-link" ata-bs-toggle="tooltip" title="Pets">
                                     <i class="fa-solid fa-paw"></i>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="/pet/reservations" class="nav-link" data-bs-toggle="tooltip" title="Pet Reservations">
+                                    <i class="fa-solid fa-cart-arrow-down"></i>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="/history" class="nav-link" data-bs-toggle="tooltip" title="Pet Reservations">
+                                    <i class="fa-solid fa-clock-rotate-left"></i>
                                 </a>
                             </li>
                             <li class="nav-item">

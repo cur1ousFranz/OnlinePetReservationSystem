@@ -14,8 +14,6 @@ class PetController extends Controller
     // Show the pet details
     public function petDetails(Pet $pet){
 
-        // TODO:: Pet Details
-
         return view('customer.pet_details', [
             'pet' => Pet::where('id',$pet->id)->first(),
             'customer' => Customer::where('users_id', Auth::user()->id)->first()
@@ -25,11 +23,22 @@ class PetController extends Controller
     // Pet Reservation
     public function petReservation(Pet $pet){
 
+        // Validating if the pet is already in reservations list
+        $reservation_list = Reservation::get();
+        foreach($reservation_list as $list){
+            if($list->pets_id === $pet->id){
+
+                abort(403, "Unauthorized action");
+
+            }
+        }
+
         $customer = Customer::where('users_id', Auth::user()->id)->first();
         Reservation::create([
             'customers_id' => $customer->id,
             'pets_id' => $pet->id,
-            'reserved_due' => Carbon::tomorrow()
+            'reserved_due' => Carbon::tomorrow(),
+            'status' => 'Pending'
         ]);
 
         Pet::where('id', $pet->id)->update([

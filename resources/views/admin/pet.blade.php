@@ -164,10 +164,16 @@
                                             </div>
                                         </div>
                                         <div class="modal-footer">
-                                            <button type="submit" class="btn form-control text-light"
-                                                style="background-color: #4381c1">
-                                                Post
-                                            </button>
+                                            <div class="d-flex">
+                                                <button type="button" class="btn text-light me-2"
+                                                    style="background-color: #ff5154" data-bs-dismiss="modal">
+                                                    Cancel
+                                                </button>
+                                                <button type="submit" class="btn text-light"
+                                                    style="background-color: #4381c1">
+                                                    Post Pet
+                                                </button>
+                                            </div>
                                         </div>
                                     </div>
 

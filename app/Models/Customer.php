@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Reservation;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Customer extends Model
 {
@@ -23,5 +24,10 @@ class Customer extends Model
     public function contact(){
 
         return $this->hasOne(Contact::class, 'customers_id');
+    }
+
+    public function reservation(){
+
+        return $this->hasMany(Reservation::class, 'customers_id');
     }
 }

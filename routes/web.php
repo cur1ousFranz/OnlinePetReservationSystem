@@ -92,6 +92,12 @@ Route::group(['middleware' => 'auth'], function(){
             $pet->delete();
             return back();
         });
+        // Pet Reservations
+        Route::get('/pet/reservations', [AdminController::class, 'reservationList']);
+        // Pet Reservations Claim
+        Route::get('/pets/reservations/{pet}/claim', [AdminController::class, 'claim']);
+        // History
+        Route::get('/history', [AdminController::class, 'history']);
 
     });
 

@@ -18,6 +18,7 @@ return new class extends Migration
             $table->foreignId('customers_id')->constrained()->cascadeOnDelete();
             $table->foreignId('pets_id')->constrained()->cascadeOnDelete();
             $table->string('reserved_due');
+            $table->string('status');
             $table->timestamps();
         });
     }

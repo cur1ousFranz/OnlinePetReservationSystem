@@ -57,7 +57,7 @@ class CustomerController extends Controller
 
         $customer = Customer::where('users_id', Auth::user()->id)->first();
         return view('customer.reservation',[
-            'pet_reserve' => Reservation::where('customers_id', $customer->id)->get()
+            'pet_reserve' => Reservation::where(['customers_id' => $customer->id, 'status' => 'Pending'])->get()
         ]);
     }
 }

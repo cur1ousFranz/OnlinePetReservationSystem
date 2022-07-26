@@ -97,10 +97,10 @@
 
                                             </div>
                                             <div class="modal-footer d-flex justify-content-center">
-                                                <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">
+                                                <button type="button" class="btn text-white" data-bs-dismiss="modal" style="background-color: #ff5154">
                                                     Cancel
                                                 </button>
-                                                <a href="/pets/{{ $pet->id }}/reservation" class="btn btn-outline-primary">
+                                                <a href="/pets/{{ $pet->id }}/reservation" class="btn text-white" style="background-color: #4381c1">
                                                     Proceed
                                                 </a>
                                             </div>

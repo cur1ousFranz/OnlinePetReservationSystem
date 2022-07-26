@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Pet;
+use App\Models\Reservation;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
@@ -101,6 +102,30 @@ class AdminController extends Controller
 
     }
 
-    // public function
+    // Pet Reservation List
+    public function reservationList(){
+
+        return view('admin.reservation_lists', [
+            'pet_list' => Reservation::with('customer')->where('status', 'Pending')->latest()->paginate(5)
+        ]);
+    }
+
+    // Pet Reservation Claim
+    public function claim(Pet $pet){
+
+        // Setting the status of reserved pet unto Claimed
+        $reserve_pet = Reservation::where('pets_id', $pet->id)->first();
+        $reserve_pet->update([
+            'status' => "Claimed"
+        ]);
+
+        return back();
+    }
+
+    // Pet Reservation History
+    public function history(){
+
+        return view('admin.reservation_history');
+    }
 
 }
