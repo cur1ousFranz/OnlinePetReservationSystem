@@ -8,6 +8,42 @@
                         @foreach ($pet_list as $pets)
                             @php
                                 $pet = \App\Models\Pet::where('id', $pets->pets_id)->first();
+
+                                $dueDay = date('d', strtotime($pets->reserved_due));
+                                $dueMonth = date('m', strtotime($pets->reserved_due));
+                                $dueYear = date('Y', strtotime($pets->reserved_due));
+
+                                $isDue = false;
+                                if($dueYear < date('Y')){
+                                    $isDue = true;
+                                }
+
+                                if($dueYear === date('Y')){
+                                    if($dueMonth < date('m')){
+                                        $isDue = true;
+                                    }
+                                    if($dueMonth === date('m')){
+
+                                        if($dueDay < date('d')){
+                                            $isDue = true;
+                                        }
+                                    }
+
+                                }
+
+                                if($isDue){
+
+                                    \App\Models\Pet::where('id', $pets->pets_id)->update([
+                                        'reserve' => "Available"
+                                    ]);
+
+                                    \App\Models\Reservation::where('id', $pets->id)->update([
+                                        'status' => "Cancelled"
+                                    ]);
+
+                                    continue;
+                                }
+
                             @endphp
                             <div class="row mt-3">
                                 <div class="col-lg-4">
